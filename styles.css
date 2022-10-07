@@ -57,9 +57,9 @@ input:disabled {
 }
 
 /* Removing some of the edges */
-#cell0,
-#cell1,
-#cell2 {
+.board :nth-child(1),
+.board :nth-child(2),
+.board :nth-child(3) {
   border-top: none;
 }
 .board :nth-child(3n + 3) {
@@ -68,8 +68,8 @@ input:disabled {
 .board :nth-child(3n + 1) {
   border-left: none;
 }
-#cell6,
-#cell7,
-#cell8 {
+.board :nth-child(7),
+.board :nth-child(8),
+.board :nth-child(9) {
   border-bottom: none;
 }
