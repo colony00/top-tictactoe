@@ -11,7 +11,7 @@ let gameBoard = (() => {
   const buttonSetO = document.querySelector("#addUser2 .submitName");
   const inputX = document.getElementById("user1");
   const inputO = document.getElementById("user2");
-  const turnToPlay = document.querySelector("p");
+  const paragraph = document.querySelector("p");
   const WINNING_COMBINATIONS = [
     [0,1,2],
     [3,4,5],
@@ -48,30 +48,30 @@ let gameBoard = (() => {
 
       if (checkWin(board)) {
         if(state === 'X') {
-          alert(`${nameX} wins`);
+          paragraph.textContent = `${nameX} wins`;
         } else {
-          alert(`${nameO} wins`);
+          paragraph.textContent = `${nameO} wins`;
         }
         gameDone = true;
 
       } else if(checkDraw()) {
-        alert('A draw!');
+        paragraph.textContent = 'A draw!';
         gameDone = true
       }
 
       if(state === 'X') {
         state = 'O';
-        turnToPlay.textContent = `${nameO}'s turn to play`
+        paragraph.textContent = `${nameO}'s turn to play`
       } else if(state === 'O') {
         state = 'X';
-        turnToPlay.textContent = `${nameX}'s turn to play`
+        paragraph.textContent = `${nameX}'s turn to play`
       }
     }
   }
 
   const resetBoard = (e) => {
     gameDone = false;
-    turnToPlay.textContent = `X's turn to play`
+    paragraph.textContent = `X's turn to play`
     board.forEach( cell => {
       cell.cellMark = 'empty';
       cell.DOM.textContent = '';
