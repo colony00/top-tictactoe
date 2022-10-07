@@ -20,6 +20,10 @@ input {
   background: teal;
   color: white;
 }
+button:disabled,
+input:disabled {
+  background-color: cadetblue;
+}
 
 .addUser {
   display: flex;
