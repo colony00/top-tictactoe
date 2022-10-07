@@ -2,9 +2,15 @@
 let gameBoard = (() => {
   let board = [];
   let state = "X";
+  let nameX = "X";
+  let nameO = "O";
   let gameDone = false;
   const boardDOM = document.querySelectorAll(".cell");
   const buttonReset = document.querySelectorAll(".reset");
+  const buttonSetX = document.querySelector("#addUser1 .submitName");
+  const buttonSetO = document.querySelector("#addUser2 .submitName");
+  const inputX = document.getElementById("user1");
+  const inputO = document.getElementById("user2");
   const WINNING_COMBINATIONS = [
     [0,1,2],
     [3,4,5],
@@ -28,6 +34,7 @@ let gameBoard = (() => {
 
   const cellClick = (e) => {
     const cell = e.target
+    
 
     if(gameDone === false){
       // Fill the cell
@@ -62,6 +69,13 @@ let gameBoard = (() => {
       cell.cellMark = 'empty';
       cell.DOM.textContent = '';
     })
+    //Resets names
+    inputO.disabled = false;
+    inputO.value = '';
+    inputX.disabled = false;
+    inputX.value = '';
+    buttonSetO.disabled = false;
+    buttonSetX.disabled = false;
   }
 
   // Event listeners
@@ -70,6 +84,20 @@ let gameBoard = (() => {
   })
   buttonReset.forEach( button =>  {
     button.addEventListener('click', resetBoard);
+  })
+  buttonSetX.addEventListener('click', (e) => {
+    if(inputX.value) {
+      nameX = inputX.value;
+      buttonSetX.disabled = true;
+      inputX.disabled = true;
+    }
+  })
+  buttonSetO.addEventListener('click', (e) => {
+    if(inputO.value) {
+      nameO = inputO.value;
+      buttonSetO.disabled = true;
+      inputO.disabled = true;
+    }
   })
 
   function checkWin(board) {
