@@ -11,6 +11,7 @@ let gameBoard = (() => {
   const buttonSetO = document.querySelector("#addUser2 .submitName");
   const inputX = document.getElementById("user1");
   const inputO = document.getElementById("user2");
+  const turnToPlay = document.querySelector("p");
   const WINNING_COMBINATIONS = [
     [0,1,2],
     [3,4,5],
@@ -35,11 +36,10 @@ let gameBoard = (() => {
   const cellClick = (e) => {
     const cell = e.target
     
-
     if(gameDone === false){
       // Fill the cell
       if (cell.textContent === '') {
-        // Der skal en smart måde til at finde ud af hvis tur det er
+        // Marks the spot
         cell.textContent = state;
         board[cell.id].cellMark = state;
       } else {
@@ -47,7 +47,11 @@ let gameBoard = (() => {
       }
 
       if (checkWin(board)) {
-        alert(`${state} wins`);
+        if(state === 'X') {
+          alert(`${nameX} wins`);
+        } else {
+          alert(`${nameO} wins`);
+        }
         gameDone = true;
 
       } else if(checkDraw()) {
@@ -55,10 +59,12 @@ let gameBoard = (() => {
         gameDone = true
       }
 
-      if(state=='X') {
-        state='O';
-      } else if(state==='O') {
-        state='X';
+      if(state === 'X') {
+        state = 'O';
+        turnToPlay.textContent = `${nameO}'s turn to play`
+      } else if(state === 'O') {
+        state = 'X';
+        turnToPlay.textContent = `${nameX}'s turn to play`
       }
     }
   }
