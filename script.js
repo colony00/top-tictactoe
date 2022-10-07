@@ -71,6 +71,7 @@ let gameBoard = (() => {
 
   const resetBoard = (e) => {
     gameDone = false;
+    turnToPlay.textContent = `X's turn to play`
     board.forEach( cell => {
       cell.cellMark = 'empty';
       cell.DOM.textContent = '';
